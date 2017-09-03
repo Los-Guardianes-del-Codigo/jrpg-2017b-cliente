@@ -12,14 +12,8 @@
 
 ### Integrantes del equipo
 
-* Completar ([xxxx](https://github.com/xxxx))
-* Completar ([xxxx](https://github.com/xxxx))
-* Completar ([xxxx](https://github.com/xxxx))
-* Completar ([xxxx](https://github.com/xxxx))
-* Completar ([xxxx](https://github.com/xxxx))
-* Completar ([xxxx](https://github.com/xxxx))
-* Completar ([xxxx](https://github.com/xxxx))
-* Completar ([xxxx](https://github.com/xxxx))
+* Martinez Cruz, Jorge (JorgePrograUnlam)
+* Di Lorenzo, Maximiliano Rodrigo ([maximiliano-rdl](https://github.com/maximiliano-rdl))
 
 ## Sobre la tecnología
 
