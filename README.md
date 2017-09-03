@@ -12,7 +12,7 @@
 
 ### Integrantes del equipo
 
-* Martinez Cruz, Jorge (JorgePrograUnlam)
+* Martinez Cruz, Jorge ([JorgePrograUnlam](https://github.com/jorgePrograUnlam))
 * Di Lorenzo, Maximiliano Rodrigo ([maximiliano-rdl](https://github.com/maximiliano-rdl))
 
 ## Sobre la tecnología
