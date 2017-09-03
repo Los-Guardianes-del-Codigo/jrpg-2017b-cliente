@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/XXX/jrpg-2017b-cliente.svg?branch=master)](https://travis-ci.org/XXX/jrpg-2017b-cliente)
+[![Build Status](https://travis-ci.org/Los-Guardianes-del-Codigo/jrpg-2017b-cliente.svg?branch=master)](https://travis-ci.org/Los-Guardianes-del-Codigo/jrpg-2017b-cliente)
 # World Of Middle Earth (WOME) - cliente
 
 ## Sobre las personas
