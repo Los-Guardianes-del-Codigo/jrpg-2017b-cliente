@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Los-Guardianes-del-Codigo/jrpg-2017b-cliente.svg?branch=master)](https://travis-ci.org/Los-Guardianes-del-Codigo/jrpg-2017b-cliente)
+﻿[![Build Status](https://travis-ci.org/Los-Guardianes-del-Codigo/jrpg-2017b-cliente.svg?branch=master)](https://travis-ci.org/Los-Guardianes-del-Codigo/jrpg-2017b-cliente)
 # World Of Middle Earth (WOME) - cliente
 
 ## Sobre las personas
@@ -14,6 +14,7 @@
 
 * Martinez Cruz, Jorge ([JorgePrograUnlam](https://github.com/jorgePrograUnlam))
 * Di Lorenzo, Maximiliano Rodrigo ([maximiliano-rdl](https://github.com/maximiliano-rdl))
+* Olivadese, Juan ([jolivadese](https://github.com/jolivadese))
 
 ## Sobre la tecnología
 
