@@ -15,7 +15,7 @@
 * Martinez Cruz, Jorge ([JorgePrograUnlam](https://github.com/jorgePrograUnlam))
 * Di Lorenzo, Maximiliano Rodrigo ([maximiliano-rdl](https://github.com/maximiliano-rdl))
 * Olivadese, Juan ([jolivadese](https://github.com/jolivadese))
-* Estigarribia, Emmanuel ([emmanuel-estigarribia](https://github.com/emmanuel-maximiliano))
+* Estigarribia, Emmanuel ([emmanuel-estigarribia](https://github.com/emmanuel-estigarribia))
 
 ## Sobre la tecnología
 
