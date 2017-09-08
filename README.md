@@ -16,6 +16,7 @@
 * Di Lorenzo, Maximiliano Rodrigo ([maximiliano-rdl](https://github.com/maximiliano-rdl))
 * Olivadese, Juan ([jolivadese](https://github.com/jolivadese))
 * Estigarribia, Emmanuel ([emmanuel-estigarribia](https://github.com/emmanuel-estigarribia))
+* Fernandez, Jonathan Ariel ([jonyfernandez](https://github.com/jonyfernandez))
 
 ## Sobre la tecnología
 
