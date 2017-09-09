@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/LosIsotopos/jrpg-2017a-cliente.svg?branch=master)](https://travis-ci.org/LosIsotopos/jrpg-2017a-cliente)
+[![Build Status](https://travis-ci.org/Los-Guardianes-del-Codigo/jrpg-2017b-cliente.svg?branch=Test-previo-a-cambios)](https://travis-ci.org/Los-Guardianes-del-Codigo/jrpg-2017b-cliente)
 # World Of Middle Earth (WOME) - cliente
 
 ## Sobre las personas
@@ -12,11 +12,6 @@
 * Lucas Videla ([delucas](https://github.com/delucas))
 
 ### Integrantes del equipo
-
-* Ezequiel Laurenti ([ezelau95](https://github.com/ezelau95))
-* Fernando Queirolo ([fernandoq96](https://github.com/fernandoq96))
-* Pablo Raimondo ([PabloRai](https://github.com/PabloRai))
-* Nicolás Sapaya ([NicolasSap](https://github.com/NicolasSap))
 
 ## Sobre la tecnología
 
