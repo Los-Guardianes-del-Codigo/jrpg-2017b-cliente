@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -21,8 +23,6 @@ import com.google.gson.Gson;
 import cliente.Cliente;
 import juego.Pantalla;
 import mensajeria.Comando;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 public class MenuAsignarSkills extends JFrame {
 
@@ -41,7 +41,7 @@ public class MenuAsignarSkills extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuAsignarSkills(final Cliente cliente) {
-		puntosAsignarInicial = 3;
+		puntosAsignarInicial = cliente.getPaquetePersonaje().getPuntosAasignar();
 		puntosFuerzaInicial = cliente.getPaquetePersonaje().getFuerza();
 		puntosDestrezaInicial = cliente.getPaquetePersonaje().getDestreza();
 		puntosInteligenciaInicial = cliente.getPaquetePersonaje().getInteligencia();
@@ -75,6 +75,13 @@ public class MenuAsignarSkills extends JFrame {
 			}
 		});
 		
+		// atributo fuerza
+		final JLabel lblFuerza = new JLabel("Fuerza");
+		lblFuerza.setForeground(Color.WHITE);
+		lblFuerza.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFuerza.setBounds(50, 72, 56, 16);
+		contentPane.add(lblFuerza);
+
 		final JLabel labelFuerza = new JLabel("");
 		labelFuerza.setForeground(Color.WHITE);
 		labelFuerza.setHorizontalAlignment(SwingConstants.CENTER);
@@ -82,6 +89,13 @@ public class MenuAsignarSkills extends JFrame {
 		labelFuerza.setText(String.valueOf(puntosFuerzaInicial));
 		contentPane.add(labelFuerza);
 		
+		// atributo destreza
+		JLabel lblDestreza = new JLabel("Destreza");
+		lblDestreza.setForeground(Color.WHITE);
+		lblDestreza.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDestreza.setBounds(50, 130, 56, 16);
+		contentPane.add(lblDestreza);
+
 		final JLabel labelDestreza = new JLabel("");
 		labelDestreza.setForeground(Color.WHITE);
 		labelDestreza.setHorizontalAlignment(SwingConstants.CENTER);
@@ -89,6 +103,13 @@ public class MenuAsignarSkills extends JFrame {
 		labelDestreza.setText(String.valueOf(puntosDestrezaInicial));
 		contentPane.add(labelDestreza);
 		
+		// atributo inteligencia
+		final JLabel lblInteligencia = new JLabel("Inteligencia");
+		lblInteligencia.setForeground(Color.WHITE);
+		lblInteligencia.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInteligencia.setBounds(39, 188, 83, 16);
+		contentPane.add(lblInteligencia);
+
 		final JLabel labelInteligencia = new JLabel("");
 		labelInteligencia.setForeground(Color.WHITE);
 		labelInteligencia.setHorizontalAlignment(SwingConstants.CENTER);
@@ -96,6 +117,12 @@ public class MenuAsignarSkills extends JFrame {
 		labelInteligencia.setText(String.valueOf(puntosInteligenciaInicial));
 		contentPane.add(labelInteligencia);
 		
+		// Puntos a asignar
+		final JLabel lblCantidadDePuntos = new JLabel("Cantidad de Puntos a Asignar");
+		lblCantidadDePuntos.setForeground(Color.WHITE);
+		lblCantidadDePuntos.setBounds(12, 13, 177, 29);
+		contentPane.add(lblCantidadDePuntos);
+
 		final JLabel labelPuntos = new JLabel("");
 		labelPuntos.setForeground(Color.WHITE);
 		labelPuntos.setHorizontalAlignment(SwingConstants.CENTER);
@@ -103,34 +130,13 @@ public class MenuAsignarSkills extends JFrame {
 		labelPuntos.setText(String.valueOf(puntosAsignarInicial));
 		contentPane.add(labelPuntos);
 		
-		final JLabel lblCantidadDePuntos = new JLabel("Cantidad de Puntos a Asignar");
-		lblCantidadDePuntos.setForeground(Color.WHITE);
-		lblCantidadDePuntos.setBounds(12, 13, 177, 29);
-		contentPane.add(lblCantidadDePuntos);
-		
-		final JLabel lblInteligencia = new JLabel("Inteligencia");
-		lblInteligencia.setForeground(Color.WHITE);
-		lblInteligencia.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInteligencia.setBounds(39, 188, 83, 16);
-		contentPane.add(lblInteligencia);
-		
-		JLabel lblDestreza = new JLabel("Destreza");
-		lblDestreza.setForeground(Color.WHITE);
-		lblDestreza.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDestreza.setBounds(50, 130, 56, 16);
-		contentPane.add(lblDestreza);
-		
-		final JLabel lblFuerza = new JLabel("Fuerza");
-		lblFuerza.setForeground(Color.WHITE);
-		lblFuerza.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFuerza.setBounds(50, 72, 56, 16);
-		contentPane.add(lblFuerza);
 		
 		final JButton buttonConfirm = new JButton("Confirmar");
 		ImageIcon icono_confirm = new ImageIcon("recursos//botonConfirmar.png");
 		buttonConfirm.setIcon(icono_confirm);
 		buttonConfirm.setEnabled(false);
 		buttonConfirm.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {;
 				puntosAsignarInicial = puntosAsignar;
 				int bonusF = puntosFuerza-puntosFuerzaInicial;
@@ -156,6 +162,7 @@ public class MenuAsignarSkills extends JFrame {
 		ImageIcon icono_c = new ImageIcon("recursos//botonCancelar.png");
 		buttonCancel.setIcon(icono_c);
 		buttonCancel.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Pantalla.menuAsignar = null;
 				dispose();
@@ -164,12 +171,18 @@ public class MenuAsignarSkills extends JFrame {
 		buttonCancel.setBounds(176, 146, 97, 25);
 		contentPane.add(buttonCancel);
 		
+		// aumentar o dismunir de fuerza
 		final JButton buttonMinus = new JButton("");
-		final JButton buttonMinus1 = new JButton("");
-		final JButton buttonMinus2 = new JButton("");
 		final JButton buttonMore = new JButton("");
+
+		// aumentar o dismunir de destreza
+		final JButton buttonMinus1 = new JButton("");
 		final JButton buttonMore1 = new JButton("");
+
+		// aumentar o dismunir de inteligencia
+		final JButton buttonMinus2 = new JButton("");
 		final JButton buttonMore2 = new JButton("");
+
 		buttonMinus.setEnabled(false);
 		buttonMinus1.setEnabled(false);
 		buttonMinus2.setEnabled(false);
@@ -177,6 +190,7 @@ public class MenuAsignarSkills extends JFrame {
 		ImageIcon icono_1 = new ImageIcon("recursos//botonMenoss.png");
 		buttonMinus.setIcon(icono_1);
 		buttonMinus.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(puntosFuerza > puntosFuerzaInicial){
 					puntosFuerza--;
@@ -211,6 +225,7 @@ public class MenuAsignarSkills extends JFrame {
 		contentPane.add(buttonMinus);
 		
 		buttonMinus1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(puntosDestreza > puntosDestrezaInicial){
 					puntosDestreza--;
@@ -246,6 +261,7 @@ public class MenuAsignarSkills extends JFrame {
 		contentPane.add(buttonMinus1);
 		
 		buttonMinus2.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(puntosInteligencia > puntosInteligenciaInicial){
 					puntosInteligencia--;
@@ -281,6 +297,7 @@ public class MenuAsignarSkills extends JFrame {
 		contentPane.add(buttonMinus2);
 		
 		buttonMore.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(puntosAsignar != 0 && !labelFuerza.getText().equals("200")){
 					puntosFuerza++;
@@ -307,6 +324,7 @@ public class MenuAsignarSkills extends JFrame {
 		
 		
 		buttonMore1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(puntosAsignar != 0 && !labelDestreza.getText().equals("200")){
 					puntosDestreza++;
@@ -331,6 +349,7 @@ public class MenuAsignarSkills extends JFrame {
 		contentPane.add(buttonMore1);
 		
 		buttonMore2.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(puntosAsignar != 0 && !labelInteligencia.getText().equals("200")){
 					puntosInteligencia++;

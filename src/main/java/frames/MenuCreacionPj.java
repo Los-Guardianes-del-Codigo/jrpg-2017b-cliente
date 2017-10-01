@@ -152,6 +152,7 @@ public class MenuCreacionPj extends JFrame {
 
 		nombre = new JTextField();
 		nombre.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				crearPj(cliente, personaje, gson, vecSalud, vecEnergia, vecFuerza, vecDestreza, vecInteligencia);
 			}
@@ -244,6 +245,8 @@ public class MenuCreacionPj extends JFrame {
 			personaje.setFuerza(Integer.parseInt(vecFuerza[cbxCasta.getSelectedIndex()]));
 			personaje.setDestreza(Integer.parseInt(vecDestreza[cbxCasta.getSelectedIndex()]));
 			personaje.setInteligencia(Integer.parseInt(vecInteligencia[cbxCasta.getSelectedIndex()]));
+		// asigno puntos iniciales
+		personaje.setPuntosAasignar(3);
 			try {
 				
 
