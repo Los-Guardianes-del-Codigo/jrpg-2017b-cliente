@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import cliente.Cliente;
 import juego.Pantalla;
@@ -142,12 +143,15 @@ public class MenuAsignarSkills extends JFrame {
 				int bonusF = puntosFuerza-puntosFuerzaInicial;
 				int bonusD = puntosDestreza-puntosDestrezaInicial;
 				int bonusI = puntosInteligencia-puntosInteligenciaInicial;
+				
+				cliente.getPaquetePersonaje().setPuntosAasignar(puntosAsignar);
+				
 				cliente.getPaquetePersonaje().useBonus(0, 0, bonusF, bonusD, bonusI);
 				cliente.getPaquetePersonaje().removerBonus();
 				cliente.getPaquetePersonaje().setComando(Comando.ACTUALIZARPERSONAJELV);
 				try {
 					cliente.getSalida().writeObject(gson.toJson(cliente.getPaquetePersonaje()));
-				} catch (IOException e1) {
+				} catch (JsonSyntaxException | IOException e1) {
 					JOptionPane.showMessageDialog(null, "Error al actualizar stats");
 
 				}
