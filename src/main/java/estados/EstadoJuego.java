@@ -51,7 +51,7 @@ public class EstadoJuego extends Estado {
 		paquetePersonaje = juego.getPersonaje();
 		entidadPersonaje = new Entidad(juego, mundo, 64, 64, juego.getPersonaje().getNombre(), 0, 0, Recursos.personaje.get(juego.getPersonaje().getRaza()), 150);
 		miniaturaPersonaje = Recursos.personaje.get(paquetePersonaje.getRaza()).get(5)[0];
-		npcs = new HashMap<>();
+		npcs = new HashMap<Integer, PaqueteNpc>();
 
 		try {
 			// Le envio al servidor que me conecte al mapa y mi posicion
@@ -61,7 +61,7 @@ public class EstadoJuego extends Estado {
 			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
 			
 			//Le envio al servidor un PaqueteNpc que va a servir para actualizar el estado de los npc del servidor
-			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getNpcs(), PaqueteNpcs.class));
+			//juego.getCliente().getSalida().writeObject(gson.toJson(juego.getNpcs(), PaqueteNpcs.class));
 		
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al ingresar al mundo");
@@ -80,6 +80,8 @@ public class EstadoJuego extends Estado {
 		mundo.graficar(g);
 		//entidadPersonaje.graficar(g);
 		graficarPersonajes(g);
+		graficarNpcs(g);
+		//System.out.println("HOla");
 		mundo.graficarObstaculos(g);
 		entidadPersonaje.graficarNombre(g);
 		g.drawImage(Recursos.marco, 0, 0, juego.getAncho(), juego.getAlto(), null);
@@ -116,7 +118,7 @@ public class EstadoJuego extends Estado {
 	public void graficarNpcs(Graphics g) {
 
 		if(juego.getNpcs() != null){
-			npcs = new HashMap(juego.getNpcs());
+			npcs = juego.getNpcs();
 			Iterator<Integer> it = npcs.keySet().iterator();
 			int key;
 			PaqueteNpc actual;
@@ -125,8 +127,8 @@ public class EstadoJuego extends Estado {
 			while (it.hasNext()) {
 				key = it.next();
 				actual = npcs.get(key);
-				Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), personajesConectados.get(actual.getIdPersonaje()).getNombre());
-				g.drawImage(Recursos.personaje.get("Ogro").get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
+				//Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), personajesConectados.get(actual.getIdPersonaje()).getNombre());
+				g.drawImage(Recursos.personaje.get("Orco").get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
 			}
 		}
 	}

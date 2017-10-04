@@ -9,14 +9,17 @@ public class PaqueteNpc extends Paquete implements Serializable, Cloneable {
 	private float posY;
 	private int direccion;
 	private int frame;
+	private String nombre;
+	private int nivel;
+	private int dificultad;
 
 	public PaqueteNpc() {
-		setComando(Comando.MOVIMIENTO);
+		setComando(Comando.ACTUALIZARNPCS);
 	}
 
-	public PaqueteNpc(int idPersonaje) {
-		id = idPersonaje;
-		setComando(Comando.MOVIMIENTO);
+	public PaqueteNpc(int idNpc) {
+		id = idNpc;
+		setComando(Comando.ACTUALIZARNPCS);
 	}
 
 	public PaqueteNpc(int idPersonaje, float posX, float posY) {
@@ -25,15 +28,15 @@ public class PaqueteNpc extends Paquete implements Serializable, Cloneable {
 		this.posY = posY;
 		this.direccion=0;
 		this.frame=0;
-		setComando(Comando.MOVIMIENTO);
+		setComando(Comando.ACTUALIZARNPCS);
 	}
 
 	public int getIdPersonaje() {
 		return id;
 	}
 
-	public void setIdPersonaje(int idPersonaje) {
-		this.id = idPersonaje;
+	public void setIdPersonaje(int idNpc) {
+		this.id = idNpc;
 	}
 
 	public float getPosX() {
@@ -68,11 +71,36 @@ public class PaqueteNpc extends Paquete implements Serializable, Cloneable {
 		this.frame = frame;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public int getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
+	}
+
+	public int getDificultad() {
+		return dificultad;
+	}
+
+	public void setDificultad(int dificultad) {
+		this.dificultad = dificultad;
+	}
+
 	@Override
 	public Object clone() {
 		Object obj = null;
 		obj = super.clone();
 		return obj;
 	}
+
 }
 
