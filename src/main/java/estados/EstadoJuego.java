@@ -20,7 +20,10 @@ import interfaz.MenuInfoPersonaje;
 import juego.Juego;
 import juego.Pantalla;
 import mensajeria.Comando;
+import mensajeria.PaqueteAtacar;
 import mensajeria.PaqueteMovimiento;
+import mensajeria.PaqueteNpc;
+import mensajeria.PaqueteNpcs;
 import mensajeria.PaquetePersonaje;
 import mundo.Mundo;
 import recursos.Recursos;
@@ -31,6 +34,7 @@ public class EstadoJuego extends Estado {
 	private PaquetePersonaje paquetePersonaje;
 	private Mundo mundo;
 	private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
+	private Map<Integer, PaqueteNpc> npcs;
 	private Map<Integer, PaquetePersonaje> personajesConectados;
 	private boolean haySolicitud;
 	private int tipoSolicitud;
@@ -47,6 +51,7 @@ public class EstadoJuego extends Estado {
 		paquetePersonaje = juego.getPersonaje();
 		entidadPersonaje = new Entidad(juego, mundo, 64, 64, juego.getPersonaje().getNombre(), 0, 0, Recursos.personaje.get(juego.getPersonaje().getRaza()), 150);
 		miniaturaPersonaje = Recursos.personaje.get(paquetePersonaje.getRaza()).get(5)[0];
+		npcs = new HashMap<>();
 
 		try {
 			// Le envio al servidor que me conecte al mapa y mi posicion
@@ -54,6 +59,10 @@ public class EstadoJuego extends Estado {
 			juego.getPersonaje().setEstado(Estado.estadoJuego);
 			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
 			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
+			
+			//Le envio al servidor un PaqueteNpc que va a servir para actualizar el estado de los npc del servidor
+			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getNpcs(), PaqueteNpcs.class));
+		
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al ingresar al mundo");
 		}
@@ -100,6 +109,24 @@ public class EstadoJuego extends Estado {
 						Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), personajesConectados.get(actual.getIdPersonaje()).getNombre());
 						g.drawImage(Recursos.personaje.get(personajesConectados.get(actual.getIdPersonaje()).getRaza()).get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
 				}
+			}
+		}
+	}
+	
+	public void graficarNpcs(Graphics g) {
+
+		if(juego.getNpcs() != null){
+			npcs = new HashMap(juego.getNpcs());
+			Iterator<Integer> it = npcs.keySet().iterator();
+			int key;
+			PaqueteNpc actual;
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Book Antiqua", Font.PLAIN, 15));
+			while (it.hasNext()) {
+				key = it.next();
+				actual = npcs.get(key);
+				Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), personajesConectados.get(actual.getIdPersonaje()).getNombre());
+				g.drawImage(Recursos.personaje.get("Ogro").get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
 			}
 		}
 	}
