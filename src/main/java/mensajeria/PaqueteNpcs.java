@@ -8,11 +8,12 @@ import java.util.Map;
 		private Map<Integer, PaqueteNpc> npcs;
 
 		public PaqueteNpcs(){
-
+			setComando(Comando.ACTUALIZARNPCS);
 		}
 
 		public PaqueteNpcs(Map<Integer, PaqueteNpc> npcs){
 			this.npcs = npcs;
+			setComando(Comando.ACTUALIZARNPCS);
 		}
 
 		public Map<Integer, PaqueteNpc> getNpcs(){
