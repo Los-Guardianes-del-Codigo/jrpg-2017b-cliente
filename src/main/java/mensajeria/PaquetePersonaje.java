@@ -12,6 +12,8 @@ import estados.Estado;
 
 public class PaquetePersonaje extends Paquete implements Serializable, Cloneable {
 
+	private int puntosAasignar;
+
 	private int id;
 	private int idMapa;
 	private int estado;
@@ -29,6 +31,14 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	
 	public PaquetePersonaje() throws IOException {
 		estado = Estado.estadoOffline;
+	}
+
+	public int getPuntosAasignar() {
+		return puntosAasignar;
+	}
+
+	public void setPuntosAasignar(int p) {
+		puntosAasignar = p;
 	}
 
 	public int getEstado() {

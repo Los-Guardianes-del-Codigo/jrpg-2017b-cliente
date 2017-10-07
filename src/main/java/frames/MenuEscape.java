@@ -48,6 +48,7 @@ public class MenuEscape extends JFrame {
 		verStats.setToolTipText("Presiona S para ver estadísticas");
 		verStats.setBounds(29, 13, 125, 25);
 		verStats.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();	
 				Pantalla.menuEscp = null;
@@ -64,13 +65,14 @@ public class MenuEscape extends JFrame {
 		asignarSkills.setToolTipText("Presiona A para asignar skills");
 		asignarSkills.setBounds(29, 66, 125, 25);
 		asignarSkills.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();	
 				Pantalla.menuEscp = null;
-				if (Pantalla.menuAsignar == null) {
+				//if (Pantalla.menuAsignar == null) {
 					Pantalla.menuAsignar = new MenuAsignarSkills(cliente);
 					Pantalla.menuAsignar.setVisible(true);
-				}
+				//}
 			}
 		});
 		contentPane.add(asignarSkills);
@@ -80,6 +82,7 @@ public class MenuEscape extends JFrame {
 		inventario.setToolTipText("Presiona I para abrir inventario");
 		inventario.setBounds(29, 121, 125, 25);
 		inventario.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				Pantalla.menuEscp = null;
@@ -97,6 +100,7 @@ public class MenuEscape extends JFrame {
 		desconectarse.setBounds(29, 175, 125, 25);
 		desconectarse.setIcon(new ImageIcon("recursos//desconectarse.png"));
 		desconectarse.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 					try {
 						Paquete p = new Paquete();
@@ -119,6 +123,7 @@ public class MenuEscape extends JFrame {
 		volver.setIcon(new ImageIcon("recursos//volver.png"));
 		volver.setBounds(29, 227, 125, 25);
 		volver.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Pantalla.menuEscp = null;
 				dispose();
