@@ -29,6 +29,11 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	private int experiencia;
 	private ArrayList<Item> items = new ArrayList<Item>();
 	
+	//Atributos iniciales de los pjs según casta: Guerrero, Hechicero, Asesino
+	final int vecFuerza[] = { 15, 10, 10 };
+	final int vecDestreza[] = { 10, 10, 15 };
+	final int vecInteligencia[] = { 10, 15, 10 };
+	
 	public PaquetePersonaje() throws IOException {
 		estado = Estado.estadoOffline;
 	}
@@ -71,6 +76,33 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 
 	public void setExperiencia(int experiencia) {
 		this.experiencia = experiencia;
+	}
+	
+	public void reiniciarPuntos(){
+		
+		this.puntosAasignar = (this.nivel -1) * 3;
+		
+		switch(this.casta)
+		{
+			case "Guerrero":
+				this.fuerza = this.vecFuerza[0] ;
+				this.destreza = this.vecDestreza[0];
+				this.inteligencia = this.vecInteligencia[0];
+			break;
+			
+			case "Hechicero":
+				this.fuerza = this.vecFuerza[1] ;
+				this.destreza = this.vecDestreza[1];
+				this.inteligencia = this.vecInteligencia[1];
+			break;
+				
+			case "Asesino":
+				this.fuerza = this.vecFuerza[2] ;
+				this.destreza = this.vecDestreza[2];
+				this.inteligencia = this.vecInteligencia[2];				
+			break;
+		}
+		
 	}
 
 	public int getId() {

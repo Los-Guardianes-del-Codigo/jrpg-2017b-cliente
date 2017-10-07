@@ -24,6 +24,9 @@ import com.google.gson.JsonSyntaxException;
 import cliente.Cliente;
 import juego.Pantalla;
 import mensajeria.Comando;
+import javax.swing.ButtonGroup;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 public class MenuAsignarSkills extends JFrame {
 
@@ -37,6 +40,8 @@ public class MenuAsignarSkills extends JFrame {
 	private int puntosDestreza = puntosDestrezaInicial;
 	private int puntosInteligencia = puntosInteligenciaInicial;
 	private final Gson gson = new Gson();
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final Action action = new SwingAction();
 
 	/**
 	 * Create the frame.
@@ -52,7 +57,7 @@ public class MenuAsignarSkills extends JFrame {
 		puntosInteligencia = puntosInteligenciaInicial;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 298, 294);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -174,6 +179,11 @@ public class MenuAsignarSkills extends JFrame {
 		});
 		buttonCancel.setBounds(176, 146, 97, 25);
 		contentPane.add(buttonCancel);
+		
+		//Instanciando el boton reiniciar
+		final JButton buttonReiniciarPuntos = new JButton("Reiniciar");
+		buttonReiniciarPuntos.setBounds(176, 40, 97, 25);
+		contentPane.add(buttonReiniciarPuntos);
 		
 		// aumentar o dismunir de fuerza
 		final JButton buttonMinus = new JButton("");
@@ -380,6 +390,35 @@ public class MenuAsignarSkills extends JFrame {
 		final JLabel imageLabel = new JLabel(new ImageIcon("recursos//background.jpg")); 
 		imageLabel.setBounds(0, 0, 298, 294);
 		imageLabel.setVisible(true);
-		contentPane.add(imageLabel);
+		contentPane.add(imageLabel, BorderLayout.SOUTH);
+		
+		//Acciones del boton reiniciar
+		buttonReiniciarPuntos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cliente.getPaquetePersonaje().reiniciarPuntos();
+				
+				labelFuerza.setText(String.valueOf(cliente.getPaquetePersonaje().getFuerza()));
+				labelDestreza.setText(String.valueOf(cliente.getPaquetePersonaje().getDestreza()));
+				labelInteligencia.setText(String.valueOf(cliente.getPaquetePersonaje().getInteligencia()));
+				labelPuntos.setText(String.valueOf(cliente.getPaquetePersonaje().getPuntosAasignar()));
+				
+				buttonMinus.setEnabled(false);
+				buttonMinus1.setEnabled(false);
+				buttonMinus2.setEnabled(false);
+				
+				buttonMore.setEnabled(true);
+				buttonMore1.setEnabled(true);
+				buttonMore2.setEnabled(true);
+			}
+		});
+		
+	}
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
 	}
 }
