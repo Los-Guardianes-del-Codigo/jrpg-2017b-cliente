@@ -14,8 +14,10 @@ import cliente.EscuchaMensajes;
 import dominio.Personaje;
 import estados.Estado;
 import estados.EstadoBatalla;
+import estados.EstadoBatallaNpc;
 import estados.EstadoJuego;
 import mensajeria.PaqueteMovimiento;
+import mensajeria.PaqueteNpc;
 import mensajeria.PaquetePersonaje;
 
 public class Juego implements Runnable {
@@ -34,6 +36,7 @@ public class Juego implements Runnable {
 	// Estados
 	private Estado estadoJuego;
 	private Estado estadoBatalla;
+	private Estado estadoBatallaNpc;
 
 	// HandlerMouse
 	private HandlerMouse handlerMouse;
@@ -49,6 +52,7 @@ public class Juego implements Runnable {
 	private Map<Integer, PaquetePersonaje> personajesConectados;
 	private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
 	private Map<String, MiChat> chatsActivos = new HashMap<>();
+	private Map<Integer, PaqueteNpc> npcs;
 
 
 	private CargarRecursos cargarRecursos;
@@ -65,7 +69,7 @@ public class Juego implements Runnable {
 		ubicacionPersonaje.setIdPersonaje(paquetePersonaje.getId());
 		ubicacionPersonaje.setFrame(0);
 		ubicacionPersonaje.setDireccion(6);
-
+		
 		// Creo el escucha de mensajes
 		escuchaMensajes = new EscuchaMensajes(this);
 		escuchaMensajes.start();
@@ -199,7 +203,15 @@ public class Juego implements Runnable {
 	public EstadoBatalla getEstadoBatalla(){
 		return (EstadoBatalla) estadoBatalla;
 	}
+	
+	public EstadoBatallaNpc getEstadoBatallaNpc(){
+		return (EstadoBatallaNpc) estadoBatallaNpc;
+	}
 
+	public void setEstadoBatallaNpc(EstadoBatallaNpc estadoBatallaNpc){
+		this.estadoBatallaNpc = estadoBatallaNpc;
+	}
+	
 	public void setEstadoBatalla(EstadoBatalla estadoBatalla){
 		this.estadoBatalla = estadoBatalla;
 	}
@@ -236,6 +248,10 @@ public class Juego implements Runnable {
 		this.personajesConectados = map;
 	}
 	
+	public void setNpcs(Map<Integer, PaqueteNpc> map) {
+		this.npcs = map;
+	}
+	
 	public Map<Integer, PaqueteMovimiento> getUbicacionPersonajes() {
 		return ubicacionPersonajes;
 	}
@@ -246,5 +262,9 @@ public class Juego implements Runnable {
 
 	public Map<String, MiChat> getChatsActivos() {
 		return chatsActivos;
+	}
+
+	public Map<Integer, PaqueteNpc> getNpcs() {
+		return npcs;
 	}
 }
