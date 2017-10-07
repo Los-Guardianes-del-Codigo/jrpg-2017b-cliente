@@ -92,7 +92,6 @@ public class EstadoJuego extends Estado {
 		//entidadPersonaje.graficar(g);
 		graficarPersonajes(g);
 		graficarNpcs(g);
-		//System.out.println("HOla");
 		mundo.graficarObstaculos(g);
 		entidadPersonaje.graficarNombre(g);
 		g.drawImage(Recursos.marco, 0, 0, juego.getAncho(), juego.getAlto(), null);
@@ -161,7 +160,6 @@ public class EstadoJuego extends Estado {
 						//FIGHT!!
 						System.out.println("ESTAS EN RANGO DE PELEAAAAAA!!!!");
 						juego.getPersonaje().setEstado(Estado.estadoBatallaNpc);
-						//PaqueteBatalla paqueteBatalla = null;
 						juego.setEstadoBatallaNpc(new EstadoBatallaNpc(juego, actual));
 						Estado.setEstado(juego.getEstadoBatallaNpc());
 					}
