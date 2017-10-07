@@ -14,12 +14,12 @@ public class PaqueteNpc extends Paquete implements Serializable, Cloneable {
 	private int dificultad;
 
 	public PaqueteNpc() {
-		setComando(Comando.ACTUALIZARNPCS);
+		setComando(Comando.ACTUALIZARNPC);
 	}
 
 	public PaqueteNpc(int idNpc) {
 		id = idNpc;
-		setComando(Comando.ACTUALIZARNPCS);
+		setComando(Comando.ACTUALIZARNPC);
 	}
 
 	public PaqueteNpc(int idPersonaje, float posX, float posY) {
@@ -28,7 +28,7 @@ public class PaqueteNpc extends Paquete implements Serializable, Cloneable {
 		this.posY = posY;
 		this.direccion=0;
 		this.frame=0;
-		setComando(Comando.ACTUALIZARNPCS);
+		setComando(Comando.ACTUALIZARNPC);
 	}
 
 	public int getIdPersonaje() {

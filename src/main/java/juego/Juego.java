@@ -14,6 +14,7 @@ import cliente.EscuchaMensajes;
 import dominio.Personaje;
 import estados.Estado;
 import estados.EstadoBatalla;
+import estados.EstadoBatallaNpc;
 import estados.EstadoJuego;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaqueteNpc;
@@ -35,6 +36,7 @@ public class Juego implements Runnable {
 	// Estados
 	private Estado estadoJuego;
 	private Estado estadoBatalla;
+	private Estado estadoBatallaNpc;
 
 	// HandlerMouse
 	private HandlerMouse handlerMouse;
@@ -201,7 +203,15 @@ public class Juego implements Runnable {
 	public EstadoBatalla getEstadoBatalla(){
 		return (EstadoBatalla) estadoBatalla;
 	}
+	
+	public EstadoBatallaNpc getEstadoBatallaNpc(){
+		return (EstadoBatallaNpc) estadoBatallaNpc;
+	}
 
+	public void setEstadoBatallaNpc(EstadoBatallaNpc estadoBatallaNpc){
+		this.estadoBatallaNpc = estadoBatallaNpc;
+	}
+	
 	public void setEstadoBatalla(EstadoBatalla estadoBatalla){
 		this.estadoBatalla = estadoBatalla;
 	}

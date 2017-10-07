@@ -21,6 +21,7 @@ import juego.Juego;
 import juego.Pantalla;
 import mensajeria.Comando;
 import mensajeria.PaqueteAtacar;
+import mensajeria.PaqueteBatalla;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaqueteNpc;
 import mensajeria.PaqueteNpcs;
@@ -138,7 +139,7 @@ public class EstadoJuego extends Estado {
 				key = it.next();
 				actual = npcs.get(key);
 				//Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), personajesConectados.get(actual.getIdPersonaje()).getNombre());
-				g.drawImage(Recursos.personaje.get("Orco").get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
+				g.drawImage(Recursos.personaje.get(actual.getNombre()).get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
 			}
 		}
 	}
@@ -159,6 +160,10 @@ public class EstadoJuego extends Estado {
 					{
 						//FIGHT!!
 						System.out.println("ESTAS EN RANGO DE PELEAAAAAA!!!!");
+						juego.getPersonaje().setEstado(Estado.estadoBatallaNpc);
+						//PaqueteBatalla paqueteBatalla = null;
+						juego.setEstadoBatallaNpc(new EstadoBatallaNpc(juego, actual));
+						Estado.setEstado(juego.getEstadoBatallaNpc());
 					}
 			}
 		}
