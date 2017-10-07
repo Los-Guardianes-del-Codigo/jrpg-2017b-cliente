@@ -22,8 +22,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import cliente.Cliente;
+import dominio.Personaje;
 import juego.Pantalla;
 import mensajeria.Comando;
+import javax.swing.JTextField;
 
 public class MenuAsignarSkills extends JFrame {
 
@@ -162,7 +164,7 @@ public class MenuAsignarSkills extends JFrame {
 		buttonConfirm.setBounds(176, 112, 97, 25);
 		contentPane.add(buttonConfirm);
 		
-		final JButton buttonCancel = new JButton("Cancelar");
+		JButton buttonCancel = new JButton("Cancelar");
 		ImageIcon icono_c = new ImageIcon("recursos//botonCancelar.png");
 		buttonCancel.setIcon(icono_c);
 		buttonCancel.addActionListener(new ActionListener() {
@@ -175,6 +177,7 @@ public class MenuAsignarSkills extends JFrame {
 		buttonCancel.setBounds(176, 146, 97, 25);
 		contentPane.add(buttonCancel);
 		
+				
 		// aumentar o dismunir de fuerza
 		final JButton buttonMinus = new JButton("");
 		final JButton buttonMore = new JButton("");
@@ -225,6 +228,8 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
+		
+				
 		buttonMinus.setBounds(12, 92, 34, 25);
 		contentPane.add(buttonMinus);
 		
@@ -376,6 +381,45 @@ public class MenuAsignarSkills extends JFrame {
 		buttonMore2.setIcon(icono_2);
 		buttonMore2.setBounds(118, 217, 34, 25);
 		contentPane.add(buttonMore2);
+		
+		//boton resetear
+		final JButton btnResetear = new JButton("Resetear");
+		//ImageIcon icono_r = new ImageIcon("recursos//botonCancelar.png");
+		//btnResetear.setIcon(icono_r);
+		btnResetear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				puntosAsignar = 3*cliente.getPaquetePersonaje().getNivel();
+				labelPuntos.setText(String.valueOf(puntosAsignar));
+				if (cliente.getPaquetePersonaje().getCasta().equals("Guerrero")) {
+					puntosFuerza = 15;
+					puntosDestreza = 10;
+					puntosInteligencia = 10;
+				}
+				else if (cliente.getPaquetePersonaje().getCasta().equals("Hechicero")) {
+					puntosFuerza = 10;
+					puntosDestreza = 10;
+					puntosInteligencia = 15;
+				}
+				else if ( cliente.getPaquetePersonaje().getCasta().equals("Asesino")) {
+					puntosFuerza = 10;
+					puntosDestreza = 15;
+					puntosInteligencia = 10;
+				}
+				
+				labelFuerza.setText(String.valueOf(puntosFuerza));
+				labelDestreza.setText(String.valueOf(puntosDestreza));
+				labelInteligencia.setText(String.valueOf(puntosInteligencia));
+				buttonMinus.setEnabled(false);
+				buttonMinus1.setEnabled(false);
+				buttonMinus2.setEnabled(false);
+				buttonMore.setEnabled(true);
+				buttonMore1.setEnabled(true);
+				buttonMore2.setEnabled(true);
+			}
+		});
+		btnResetear.setBounds(176, 180, 97, 25);
+		contentPane.add(btnResetear);
 		
 		final JLabel imageLabel = new JLabel(new ImageIcon("recursos//background.jpg")); 
 		imageLabel.setBounds(0, 0, 298, 294);
